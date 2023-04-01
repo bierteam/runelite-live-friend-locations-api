@@ -1,11 +1,14 @@
 # runelite-live-friend-locations-api
+
 This API is used in combination with the live friend locations plugin in runelite: https://github.com/TiboDeMunck/runelite-live-friend-locations-plugin
 
-# Setup
+## Setup
+
 - Deploy somewhere 
 - After build returns shared key and creates .env file
 
-## Heroku Setup
+### Heroku Setup
+
 Example of setup using Heroku
 
 1) Fork this repository to your own GitHub account
@@ -28,7 +31,8 @@ note: under settings you will also find your url
 
 ! Only share this link and Url and Key with people you trust, it's not my fault if your api gets leaked and PK'ers know your every move in the wilderness
 
-## Updating Fork
+### Updating Fork
+
 1) Click the "Fetch Upstream" in your forked repository
 ![image](https://user-images.githubusercontent.com/46536105/175146130-8537604b-6af6-4ad0-a48a-c5b8ac93e347.png)
 
@@ -36,5 +40,4 @@ note: under settings you will also find your url
 
 !If this doesn't work, manually deploy the "master" branch
 
-# Youtube Tutorial
-https://www.youtube.com/embed/eMgULNYfU1k
+## [Youtube Tutorial](https://www.youtube.com/embed/eMgULNYfU1k)
