@@ -3,6 +3,8 @@ require("dotenv").config();
 const randomstring = require("randomstring");
 const fs = require("fs");
 const app = express();
+// https://expressjs.com/en/guide/behind-proxies.html
+app.set('trust proxy', 'loopback, uniquelocal')
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
@@ -28,11 +30,13 @@ if (!process.env.SHARED_KEY) {
 
 app.use(function (req, res, next) {
   if (!req.headers.authorization) {
+    console.log(`${req.ip} No credentials sent`)
     return res.status(401).json({
-      error: "No credentials sent!",
+        error: "No credentials sent!",
     });
-  }
-  if (req.headers.authorization != sharedKey) {
+}
+if (req.headers.authorization != sharedKey) {
+    console.log(`${req.ip} Wrong credentials`)
     return res.status(403).json({
       error: "Wrong credentials",
     });
@@ -47,7 +51,7 @@ app.get("/", (req, res) => {
   checkData(timestamp);
 
   res.send(data);
-  console.log("Data requested")
+  console.log(`${req.ip} Data requested`)
 });
 
 // Receives Location Data
@@ -58,7 +62,7 @@ app.post("/post", (req, res) => {
   updateData(newObj, timestamp);
   checkData(timestamp);
   res.send(data);
-  console.log("Data received")
+  console.log(`${req.ip} Data received: ${JSON.stringify(req.body)}`)
 });
 
 // Updates Location Data
