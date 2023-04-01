@@ -1,7 +1,7 @@
 {
   "name": "live-friend-locations-api",
-  "version": "1.0.1",
-  "description": "",
+  "version": "1.0.2",
+  "description": "A Friend tracker for Runelite",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

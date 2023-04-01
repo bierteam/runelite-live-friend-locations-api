@@ -1,10 +1,10 @@
 # runelite-live-friend-locations-api
 
-This API is used in combination with the live friend locations plugin in runelite: https://github.com/TiboDeMunck/runelite-live-friend-locations-plugin
+This API is used in combination with the live friend locations plugin in runelite: <https://github.com/TiboDeMunck/runelite-live-friend-locations-plugin>
 
 ## Setup
 
-- Deploy somewhere 
+- Deploy somewhere
 - After build returns shared key and creates .env file
 
 ### Heroku Setup
@@ -41,3 +41,7 @@ note: under settings you will also find your url
 !If this doesn't work, manually deploy the "master" branch
 
 ## [Youtube Tutorial](https://www.youtube.com/embed/eMgULNYfU1k)
+
+## This is running in Kubernetes
+
+<https://github.com/bierteam/uber-kubernetes/tree/main/argocd-managed/friend-tracker>

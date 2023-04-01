@@ -33,7 +33,7 @@ app.use(function (req, res, next) {
     });
   }
   if (req.headers.authorization != sharedKey) {
-    return res.status(401).json({
+    return res.status(403).json({
       error: "Wrong credentials",
     });
   }
@@ -47,6 +47,7 @@ app.get("/", (req, res) => {
   checkData(timestamp);
 
   res.send(data);
+  console.log("Data requested")
 });
 
 // Receives Location Data
@@ -57,6 +58,7 @@ app.post("/post", (req, res) => {
   updateData(newObj, timestamp);
   checkData(timestamp);
   res.send(data);
+  console.log("Data received")
 });
 
 // Updates Location Data
@@ -99,5 +101,5 @@ function checkData(timestamp) {
 }
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+  console.log(`Friend tracker listening at http://localhost:${port}`);
 });
