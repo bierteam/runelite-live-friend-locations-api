@@ -1,6 +1,6 @@
 {
   "name": "live-friend-locations-api",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "description": "A Friend tracker for Runelite",
   "main": "server.js",
   "scripts": {

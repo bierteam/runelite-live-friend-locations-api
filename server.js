@@ -28,6 +28,11 @@ if (!process.env.SHARED_KEY) {
   );
 }
 
+app.get("/health", (req, res) => {
+  res.sendStatus(200);
+});
+
+
 app.use(function (req, res, next) {
   if (!req.headers.authorization) {
     console.log(`${req.ip} No credentials sent`)
