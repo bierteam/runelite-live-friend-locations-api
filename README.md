@@ -1,47 +1,49 @@
 # runelite-live-friend-locations-api
 
-This API is used in combination with the live friend locations plugin in runelite: <https://github.com/TiboDeMunck/runelite-live-friend-locations-plugin>
+A small HTTP API that stores and returns live friend location updates for the RuneLite plugin.
 
-## Setup
+## Running locally
 
-- Deploy somewhere
-- After build returns shared key and creates .env file
+### Build
 
-### Heroku Setup
+```sh
+go build -o friend-tracker ./...
+```
 
-Example of setup using Heroku
+### Run
 
-1) Fork this repository to your own GitHub account
-2) Create a new heroku app
-3) Under "deploy" connect with your GitHub account
-4) Search of the forked repository under App connected to GitHub
-5) Manually Deploy
-![image](https://user-images.githubusercontent.com/46536105/137190410-595425a5-a7b2-4925-978e-740d4a30b252.png)
+```sh
+export SHARED_KEY=your-secret
+./friend-tracker
+```
 
-6) When the application is deployed go to "View Logs" under "More" and copy the Shared Key
-![image](https://user-images.githubusercontent.com/46536105/137190865-ce1508e3-b2f1-46ec-a640-e620260aca06.png)
+The API listens on port `3000` by default.
 
-7) Go to settings and add a config var named "SHARED_KEY" with the copied shared key as value
-![image](https://user-images.githubusercontent.com/46536105/137191099-44ebc769-9d5e-47a5-8b0d-3796b0f61e70.png)
+## Docker
 
-note: under settings you will also find your url
-![image](https://user-images.githubusercontent.com/46536105/137191199-8dfa2572-f0b2-42ee-aee3-e1248d67f110.png)
+Build and run:
 
-8) Enter your base url and the shared key into the runelite plugin
+```sh
+docker build -t runelite-friend-locations-api .
+docker run -e SHARED_KEY=your-secret -p 3000:3000 runelite-friend-locations-api
+```
 
-! Only share this link and Url and Key with people you trust, it's not my fault if your api gets leaked and PK'ers know your every move in the wilderness
+## API
 
-### Updating Fork
+### GET /
+Returns the current list of tracked locations.
 
-1) Click the "Fetch Upstream" in your forked repository
-![image](https://user-images.githubusercontent.com/46536105/175146130-8537604b-6af6-4ad0-a48a-c5b8ac93e347.png)
+### POST /post
+Accepts JSON body with the following fields (name is required):
 
-2) If Heroku is setup correctly, the updated repository should automatically deploy on Heroku
+- `name` (string)
+- `waypoint` (object with `x`, `y`, `plane`)
+- `x`, `y`, `plane` (int)
+- `type`, `title` (string)
+- `world` (int)
 
-!If this doesn't work, manually deploy the "master" branch
+Include the shared key as the `Authorization` header.
 
-## [Youtube Tutorial](https://www.youtube.com/embed/eMgULNYfU1k)
+## License
 
-## This is running in Kubernetes
-
-<https://github.com/bierteam/uber-kubernetes/tree/main/argocd-managed/friend-tracker>
+MIT
